@@ -30,7 +30,7 @@ public class TTLProducer {
 
         // 通过队列属性设置消息过期时间
         Map<String, Object> argss = new HashMap<String, Object>();
-        argss.put("x-message-ttl",6000);
+        argss.put("x-message-ttl", 6000);
 
         // 声明队列（默认交换机AMQP default，Direct）
         // String queue, boolean durable, boolean exclusive, boolean autoDelete, Map<String, Object> arguments
