@@ -31,8 +31,8 @@ public class LimitProducer {
 
         // 发送消息
         // String exchange, String routingKey, BasicProperties props, byte[] body
-        for(int i=0; i<100; i++){
-            channel.basicPublish("", QUEUE_NAME, null, (msg+i).getBytes());
+        for (int i = 0; i < 100; i++) {
+            channel.basicPublish("", QUEUE_NAME, null, (msg + i).getBytes());
         }
 
         channel.close();

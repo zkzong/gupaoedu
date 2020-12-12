@@ -30,6 +30,7 @@ public class AmqpConfig {
     public SimpleMessageListenerContainer container(ConnectionFactory connectionFactory) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory);
         container.setConsumerTagStrategy(new ConsumerTagStrategy() {
+            @Override
             public String createConsumerTag(String queue) {
                 return null;
             }

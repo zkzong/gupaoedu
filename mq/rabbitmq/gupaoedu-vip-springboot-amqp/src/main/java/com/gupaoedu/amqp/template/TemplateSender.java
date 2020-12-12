@@ -1,6 +1,5 @@
 package com.gupaoedu.amqp.template;
 
-import com.gupaoedu.ttl.TtlSender;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -17,7 +16,7 @@ public class TemplateSender {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TemplateSender.class);
         RabbitTemplate rabbitTemplate = context.getBean(RabbitTemplate.class);
 
-        rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback(){
+        rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
             public void confirm(CorrelationData correlationData, boolean ack, String cause) {
                 if (ack) {
                     System.out.println("消息确认成功");

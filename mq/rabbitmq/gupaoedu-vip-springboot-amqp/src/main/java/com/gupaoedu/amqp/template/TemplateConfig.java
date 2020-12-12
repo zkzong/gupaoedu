@@ -33,17 +33,17 @@ public class TemplateConfig {
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMandatory(true);
-        rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback(){
+        rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback() {
             public void returnedMessage(Message message,
                                         int replyCode,
                                         String replyText,
                                         String exchange,
-                                        String routingKey){
+                                        String routingKey) {
                 System.out.println("回发的消息：");
-                System.out.println("replyCode: "+replyCode);
-                System.out.println("replyText: "+replyText);
-                System.out.println("exchange: "+exchange);
-                System.out.println("routingKey: "+routingKey);
+                System.out.println("replyCode: " + replyCode);
+                System.out.println("replyText: " + replyText);
+                System.out.println("exchange: " + exchange);
+                System.out.println("routingKey: " + routingKey);
             }
         });
 
@@ -57,7 +57,6 @@ public class TemplateConfig {
                 }
             }
         });
-
 
 
         return rabbitTemplate;
