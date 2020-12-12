@@ -5,11 +5,11 @@ import java.util.ResourceBundle;
 public class ResourceUtil {
     private static final ResourceBundle resourceBundle;
 
-    static{
+    static {
         resourceBundle = ResourceBundle.getBundle("gupaomq");
     }
 
-    public static String getKey(String key){
+    public static String getKey(String key) {
         return resourceBundle.getString(key);
     }
 

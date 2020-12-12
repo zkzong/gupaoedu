@@ -34,6 +34,7 @@ public class TemplateConfig {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMandatory(true);
         rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback() {
+            @Override
             public void returnedMessage(Message message,
                                         int replyCode,
                                         String replyText,
@@ -50,6 +51,7 @@ public class TemplateConfig {
         rabbitTemplate.setChannelTransacted(true);
 
         rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
+            @Override
             public void confirm(CorrelationData correlationData, boolean ack, String cause) {
                 if (!ack) {
                     System.out.println("发送消息失败：" + cause);

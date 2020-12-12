@@ -23,42 +23,45 @@ public class MerchantController {
 
     /**
      * 查询商户列表
+     *
      * @return
      */
     @RequestMapping("/getMerchantList")
     @ResponseBody
-    public LayuiData getMerchantList (HttpServletRequest request){
+    public LayuiData getMerchantList(HttpServletRequest request) {
         String name = request.getParameter("name");
-        if(name==null){
-            name="";
+        if (name == null) {
+            name = "";
         }
         int page = Integer.parseInt(request.getParameter("page"));
         int limit = Integer.parseInt(request.getParameter("limit"));
-        if(page>=1){
-            page = (page-1)*limit;
+        if (page >= 1) {
+            page = (page - 1) * limit;
         }
         LayuiData layuiData = new LayuiData();
-        List<Merchant> merchantList = merchantService.getMerchantList(name,page,limit);
+        List<Merchant> merchantList = merchantService.getMerchantList(name, page, limit);
         int count = merchantService.getMerchantCount();
         layuiData.setCode(0);
         layuiData.setCount(count);
         layuiData.setMsg("数据请求成功");
         layuiData.setData(merchantList);
-       return layuiData;
+        return layuiData;
     }
 
     /**
      * 去新增商户界面
+     *
      * @return
      */
     @RequestMapping("/toMerchant")
-    public String toMerchant (){
+    public String toMerchant() {
 
         return "merchantAdd";
     }
 
     /**
      * 新增商户
+     *
      * @param name
      * @param
      * @return
@@ -66,7 +69,7 @@ public class MerchantController {
     @RequestMapping("/merchantAdd")
     @Transactional
     @ResponseBody
-    public Integer merchantAdd (String name,String address,String accountNo, String accountName){
+    public Integer merchantAdd(String name, String address, String accountNo, String accountName) {
         Merchant merchant = new Merchant();
         merchant.setAccountNo(accountNo);
         merchant.setName(name);
@@ -84,6 +87,7 @@ public class MerchantController {
 
     /**
      * 根据id删除商户
+     *
      * @param id
      * @return
      */
@@ -91,13 +95,14 @@ public class MerchantController {
     @ResponseBody
     public Integer delete(Integer id) {
 
-       int num = merchantService.delete(id);
+        int num = merchantService.delete(id);
 
         return num;
     }
 
     /**
      * 去查看界面
+     *
      * @param id
      * @param model
      * @return
@@ -106,11 +111,13 @@ public class MerchantController {
     public String toDetail(Integer id, Model model) {
 
         Merchant merchant = merchantService.getMerchantById(id);
-        model.addAttribute("merchant",merchant);
+        model.addAttribute("merchant", merchant);
         return "merchantDetail";
     }
+
     /**
      * 去修改界面
+     *
      * @param id
      * @param model
      * @return
@@ -119,17 +126,19 @@ public class MerchantController {
     public String toUpdate(Integer id, Model model) {
 
         Merchant merchant = merchantService.getMerchantById(id);
-        model.addAttribute("merchant",merchant);
+        model.addAttribute("merchant", merchant);
         return "merchantUpdate";
     }
+
     /**
      * 根据id修改商户信息
+     *
      * @return
      */
     @RequestMapping("/merchantUpdate")
     @Transactional
     @ResponseBody
-    public Integer merchantUpdate (Integer id, String name,String address,String accountNo, String accountName){
+    public Integer merchantUpdate(Integer id, String name, String address, String accountNo, String accountName) {
         Merchant merchant = new Merchant();
         merchant.setId(id);
         merchant.setName(name);
@@ -142,15 +151,17 @@ public class MerchantController {
 
     /**
      * 变更商户状态
+     *
      * @return
      * @throws Exception
      */
     @GetMapping(value = "/changeState")
     @ResponseBody
-    public String changeState(@RequestParam(value = "id") String idStr)throws Exception{
-        String errmsg="";
-        if( null == idStr || "".equals(idStr))
-        return "商户号不能为空";
+    public String changeState(@RequestParam(value = "id") String idStr) throws Exception {
+        String errmsg = "";
+        if (null == idStr || "".equals(idStr)) {
+            return "商户号不能为空";
+        }
         int id = Integer.parseInt(idStr);
 
         // 校验
@@ -162,17 +173,17 @@ public class MerchantController {
         Merchant updateBean = new Merchant();
         updateBean.setId(id);
         //如果是现在是启用，则停用
-        if(Constant.MERCHANT_STATE.ACITVE.equals(result.getState())){
+        if (Constant.MERCHANT_STATE.ACITVE.equals(result.getState())) {
             updateBean.setState("0");
-        }else {
+        } else {
             updateBean.setState("1");
         }
 
         int num = merchantService.updateState(updateBean);
         // 1表示成功
-        if( num == 1){
+        if (num == 1) {
             return "1";
-        }else{
+        } else {
             return "更新商户状态失败";
         }
 

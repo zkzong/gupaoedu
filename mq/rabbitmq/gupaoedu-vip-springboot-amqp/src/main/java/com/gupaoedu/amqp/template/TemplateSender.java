@@ -17,6 +17,7 @@ public class TemplateSender {
         RabbitTemplate rabbitTemplate = context.getBean(RabbitTemplate.class);
 
         rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
+            @Override
             public void confirm(CorrelationData correlationData, boolean ack, String cause) {
                 if (ack) {
                     System.out.println("消息确认成功");
