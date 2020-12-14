@@ -40,7 +40,7 @@ public class LimitConsumer2 {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("Consumer2 Received message : '" + msg + "'" );
+                System.out.println("Consumer2 Received message : '" + msg + "'");
                 channel.basicAck(envelope.getDeliveryTag(), true);
             }
         };

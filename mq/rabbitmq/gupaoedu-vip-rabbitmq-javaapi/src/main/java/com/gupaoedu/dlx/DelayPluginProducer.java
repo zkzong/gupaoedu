@@ -1,6 +1,5 @@
 package com.gupaoedu.dlx;
 
-import com.gupaoedu.util.ResourceUtil;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -16,9 +15,9 @@ import java.util.Map;
  * @Author: qingshan
  * @Date: 2019/01/14 21:56
  * @Description: 咕泡学院，只为更好的你
- *  使用延时插件实现的消息投递-生产者
- *  必须要在服务端安装rabbitmq-delayed-message-exchange插件，安装步骤见README.MD
- *  先启动消费者
+ * 使用延时插件实现的消息投递-生产者
+ * 必须要在服务端安装rabbitmq-delayed-message-exchange插件，安装步骤见README.MD
+ * 先启动消费者
  */
 public class DelayPluginProducer {
 

@@ -1,7 +1,12 @@
 package com.gupaoedu.dlx;
 
-import com.gupaoedu.util.ResourceUtil;
-import com.rabbitmq.client.*;
+import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.Consumer;
+import com.rabbitmq.client.DefaultConsumer;
+import com.rabbitmq.client.Envelope;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -13,9 +18,9 @@ import java.util.Map;
  * @Author: qingshan
  * @Date: 2019/01/14 21:56
  * @Description: 咕泡学院，只为更好的你
- *  使用延时插件实现的消息投递-消费者
- *  必须要在服务端安装rabbitmq-delayed-message-exchange插件，安装步骤见README.MD
- *  先启动消费者
+ * 使用延时插件实现的消息投递-消费者
+ * 必须要在服务端安装rabbitmq-delayed-message-exchange插件，安装步骤见README.MD
+ * 先启动消费者
  */
 public class DelayPluginConsumer {
 
@@ -34,7 +39,7 @@ public class DelayPluginConsumer {
                 false, argss);
 
         // 声明队列
-        channel.queueDeclare("DELAY_QUEUE", false,false,false,null);
+        channel.queueDeclare("DELAY_QUEUE", false, false, false, null);
 
         // 绑定交换机与队列
         channel.queueBind("DELAY_QUEUE", "DELAY_EXCHANGE", "DELAY_KEY");
@@ -45,8 +50,8 @@ public class DelayPluginConsumer {
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties,
                                        byte[] body) throws IOException {
                 String msg = new String(body, "UTF-8");
-                SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-                System.out.println("收到消息：[" + msg + "]\n接收时间：" +sf.format(new Date()));
+                SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                System.out.println("收到消息：[" + msg + "]\n接收时间：" + sf.format(new Date()));
             }
         };
 

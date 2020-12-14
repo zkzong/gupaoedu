@@ -13,42 +13,42 @@ public class RabbitConfig {
 
     // 两个交换机
     @Bean("topicExchange")
-    public TopicExchange getTopicExchange(){
+    public TopicExchange getTopicExchange() {
         return new TopicExchange("TOPIC_EXCHANGE");
     }
 
     @Bean("fanoutExchange")
-    public FanoutExchange getFanoutExchange(){
-        return  new FanoutExchange("FANOUT_EXCHANGE");
+    public FanoutExchange getFanoutExchange() {
+        return new FanoutExchange("FANOUT_EXCHANGE");
     }
 
     // 三个队列
     @Bean("firstQueue")
-    public Queue getFirstQueue(){
+    public Queue getFirstQueue() {
         Map<String, Object> args = new HashMap<String, Object>();
-        args.put("x-message-ttl",6000);
+        args.put("x-message-ttl", 6000);
         Queue queue = new Queue("FIRST_QUEUE", false, false, true, args);
         return queue;
     }
 
     @Bean("secondQueue")
-    public Queue getSecondQueue(){
+    public Queue getSecondQueue() {
         return new Queue("SECOND_QUEUE");
     }
 
     @Bean("thirdQueue")
-    public Queue getThirdQueue(){
+    public Queue getThirdQueue() {
         return new Queue("THIRD_QUEUE");
     }
 
     // 两个绑定
     @Bean
-    public Binding bindSecond(@Qualifier("secondQueue") Queue queue,@Qualifier("topicExchange") TopicExchange exchange){
+    public Binding bindSecond(@Qualifier("secondQueue") Queue queue, @Qualifier("topicExchange") TopicExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with("#.gupao.#");
     }
 
     @Bean
-    public Binding bindThird(@Qualifier("thirdQueue") Queue queue,@Qualifier("fanoutExchange") FanoutExchange exchange){
+    public Binding bindThird(@Qualifier("thirdQueue") Queue queue, @Qualifier("fanoutExchange") FanoutExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange);
     }
 

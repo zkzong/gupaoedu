@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @PropertySource("classpath:gupaomq.properties")
-@RabbitListener(queues = "${com.gupaoedu.thirdqueue}", containerFactory="rabbitListenerContainerFactory")
+@RabbitListener(queues = "${com.gupaoedu.thirdqueue}", containerFactory = "rabbitListenerContainerFactory")
 public class ThirdConsumer {
     @RabbitHandler
-    public void process(String msg){
+    public void process(String msg) {
         System.out.println("Third Queue received msg : " + msg);
     }
 }

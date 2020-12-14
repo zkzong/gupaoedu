@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.gupaoedu.mapper")
 public class ProducerApp {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ProducerApp.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ProducerApp.class, args);
+    }
 }

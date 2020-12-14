@@ -13,9 +13,9 @@ import java.io.IOException;
  * RPC服务端，先启动
  */
 public class RPCServer {
-    private final static String REQUEST_QUEUE_NAME="RPC_REQUEST";
+    private final static String REQUEST_QUEUE_NAME = "RPC_REQUEST";
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setUri(ResourceUtil.getKey("rabbitmq.uri"));
 
@@ -40,15 +40,15 @@ public class RPCServer {
                 //获取客户端指定的回调队列名
                 String replyQueue = properties.getReplyTo();
                 //返回获取消息的平方
-                String message = new String(body,"UTF-8");
+                String message = new String(body, "UTF-8");
                 // 计算平方
-                Double mSquare =  Math.pow(Integer.parseInt(message),2);
+                Double mSquare = Math.pow(Integer.parseInt(message), 2);
                 String repMsg = String.valueOf(mSquare);
 
                 // 把结果发送到回复队列
-                channel.basicPublish("",replyQueue,replyProperties,repMsg.getBytes());
+                channel.basicPublish("", replyQueue, replyProperties, repMsg.getBytes());
                 //手动回应消息应答
-                channel.basicAck(envelope.getDeliveryTag(),false);
+                channel.basicAck(envelope.getDeliveryTag(), false);
             }
         };
 

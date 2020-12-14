@@ -14,11 +14,11 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @PropertySource("classpath:gupaomq.properties")
-@RabbitListener(queues = "${com.gupaoedu.firstqueue}", containerFactory="rabbitListenerContainerFactory")
+@RabbitListener(queues = "${com.gupaoedu.firstqueue}", containerFactory = "rabbitListenerContainerFactory")
 public class FirstConsumer {
 
     @RabbitHandler
-    public void process(@Payload Merchant merchant){
+    public void process(@Payload Merchant merchant) {
         System.out.println("First Queue received msg : " + merchant.getName());
     }
 

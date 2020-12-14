@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class RabbitApiApp {
-	public static void main(String[] args) {
-		SpringApplication.run(RabbitApiApp.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(RabbitApiApp.class, args);
+    }
 
 }

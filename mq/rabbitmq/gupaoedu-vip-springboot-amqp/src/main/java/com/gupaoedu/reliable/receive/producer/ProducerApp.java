@@ -9,13 +9,14 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+
 import java.util.HashMap;
 
 /**
  * 消息消费的可靠性保证——ACK
  */
 @ComponentScan(basePackages = "com.gupaoedu.reliable.receive.producer")
-public class ProducerApp{
+public class ProducerApp {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProducerApp.class);
 

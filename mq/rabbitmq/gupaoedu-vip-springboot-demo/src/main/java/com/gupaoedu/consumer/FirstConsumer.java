@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class FirstConsumer {
 
     @RabbitHandler
-    public void process(String msg){
+    public void process(String msg) {
         System.out.println(" first queue received msg : " + msg);
     }
 }

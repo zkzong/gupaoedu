@@ -1,12 +1,12 @@
 package com.gupaoedu.dlx.delayplugin;
 
-import com.gupaoedu.dlx.ttl.DlxSender;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;

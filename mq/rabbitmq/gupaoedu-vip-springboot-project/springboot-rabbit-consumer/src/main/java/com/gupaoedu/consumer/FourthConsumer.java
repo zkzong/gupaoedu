@@ -1,7 +1,5 @@
 package com.gupaoedu.consumer;
 
-import com.rabbitmq.client.Channel;
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.context.annotation.PropertySource;
@@ -16,7 +14,7 @@ import java.io.IOException;
  */
 @Component
 @PropertySource("classpath:gupaomq.properties")
-@RabbitListener(queues = "${com.gupaoedu.fourthqueue}", containerFactory="rabbitListenerContainerFactory")
+@RabbitListener(queues = "${com.gupaoedu.fourthqueue}", containerFactory = "rabbitListenerContainerFactory")
 public class FourthConsumer {
     @RabbitHandler
     public void process(String message) throws IOException {

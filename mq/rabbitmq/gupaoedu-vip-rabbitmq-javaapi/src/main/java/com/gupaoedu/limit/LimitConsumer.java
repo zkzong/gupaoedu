@@ -35,7 +35,7 @@ public class LimitConsumer {
                                        byte[] body) throws IOException {
                 String msg = new String(body, "UTF-8");
 
-                System.out.println("Consumer1 Received message : '" + msg + "'" );
+                System.out.println("Consumer1 Received message : '" + msg + "'");
 
                 channel.basicAck(envelope.getDeliveryTag(), true);
 

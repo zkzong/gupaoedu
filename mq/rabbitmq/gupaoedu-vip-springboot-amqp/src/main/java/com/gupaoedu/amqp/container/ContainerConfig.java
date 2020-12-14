@@ -33,12 +33,12 @@ public class ContainerConfig {
 
 
     @Bean("secondQueue")
-    public Queue getSecondQueue(){
+    public Queue getSecondQueue() {
         return new Queue("GP_BASIC_SECOND_QUEUE");
     }
 
     @Bean("thirdQueue")
-    public Queue getThirdQueue(){
+    public Queue getThirdQueue() {
         return new Queue("GP_BASIC_THIRD_QUEUE");
     }
 

@@ -7,12 +7,10 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.transaction.RabbitTransactionManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 消息投递的可靠性保证——Confirm和Return
@@ -68,9 +66,9 @@ public class ProducerConfig {
             @Override
             public void confirm(CorrelationData correlationData, boolean ack, String cause) {
                 System.out.println("--------收到服务端异步确认--------");
-                System.out.println("received ack: "+ack);
-                System.out.println("cause: "+cause);
-                System.out.println("correlationId: "+correlationData.getId());
+                System.out.println("received ack: " + ack);
+                System.out.println("cause: " + cause);
+                System.out.println("correlationId: " + correlationData.getId());
             }
         });
 

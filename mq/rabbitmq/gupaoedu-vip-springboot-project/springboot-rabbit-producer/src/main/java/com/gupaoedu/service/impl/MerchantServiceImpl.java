@@ -1,10 +1,9 @@
 package com.gupaoedu.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.gupaoedu.entity.Merchant;
 import com.gupaoedu.mapper.MerchantMapper;
 import com.gupaoedu.service.MerchantService;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,7 +35,7 @@ public class MerchantServiceImpl implements MerchantService {
 
     @Override
     public List<Merchant> getMerchantList(String name, int page, int limit) {
-        return  merchantMapper.getMerchantList(name,page,limit);
+        return merchantMapper.getMerchantList(name, page, limit);
     }
 
     @Override
@@ -47,13 +46,13 @@ public class MerchantServiceImpl implements MerchantService {
     @Override
     public int add(Merchant merchant) {
         int k = merchantMapper.add(merchant);
-        System.out.println("aaa : "+merchant.getId());
+        System.out.println("aaa : " + merchant.getId());
         JSONObject title = new JSONObject();
         String jsonBody = JSONObject.toJSONString(merchant);
-        title.put("type","add");
-        title.put("desc","新增商户");
-        title.put("content",jsonBody);
-        gupaoTemplate.convertAndSend(topicExchange,topicRoutingKey, title.toJSONString());
+        title.put("type", "add");
+        title.put("desc", "新增商户");
+        title.put("content", jsonBody);
+        gupaoTemplate.convertAndSend(topicExchange, topicRoutingKey, title.toJSONString());
 
         return k;
     }
@@ -65,10 +64,10 @@ public class MerchantServiceImpl implements MerchantService {
 
         JSONObject title = new JSONObject();
         String jsonBody = JSONObject.toJSONString(merchant);
-        title.put("type","state");
-        title.put("desc","更新商户状态");
-        title.put("content",jsonBody);
-        gupaoTemplate.convertAndSend(topicExchange,topicRoutingKey, title.toJSONString());
+        title.put("type", "state");
+        title.put("desc", "更新商户状态");
+        title.put("content", jsonBody);
+        gupaoTemplate.convertAndSend(topicExchange, topicRoutingKey, title.toJSONString());
 
         return k;
     }
@@ -80,10 +79,10 @@ public class MerchantServiceImpl implements MerchantService {
 
         JSONObject title = new JSONObject();
         String jsonBody = JSONObject.toJSONString(merchant);
-        title.put("type","update");
-        title.put("desc","更新商户信息");
-        title.put("content",jsonBody);
-        gupaoTemplate.convertAndSend(topicExchange,topicRoutingKey, title.toJSONString());
+        title.put("type", "update");
+        title.put("desc", "更新商户信息");
+        title.put("content", jsonBody);
+        gupaoTemplate.convertAndSend(topicExchange, topicRoutingKey, title.toJSONString());
 
         return k;
     }
@@ -97,11 +96,11 @@ public class MerchantServiceImpl implements MerchantService {
         Merchant merchant = new Merchant();
         merchant.setId(id);
         String jsonBody = JSONObject.toJSONString(merchant);
-        title.put("type","delete");
-        title.put("desc","删除商户");
-        title.put("content",jsonBody);
+        title.put("type", "delete");
+        title.put("desc", "删除商户");
+        title.put("content", jsonBody);
 
-        gupaoTemplate.convertAndSend(topicExchange,topicRoutingKey, title.toJSONString());
+        gupaoTemplate.convertAndSend(topicExchange, topicRoutingKey, title.toJSONString());
 
         return k;
     }

@@ -34,8 +34,8 @@ public class MessageConsumer {
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties,
                                        byte[] body) throws IOException {
                 String msg = new String(body, "UTF-8");
-                System.out.println("Received message : '" + msg + "' " );
-                System.out.println("messageId : " + properties.getMessageId() );
+                System.out.println("Received message : '" + msg + "' ");
+                System.out.println("messageId : " + properties.getMessageId());
                 System.out.println(properties.getHeaders().get("name") + " -- " + properties.getHeaders().get("level"));
             }
         };

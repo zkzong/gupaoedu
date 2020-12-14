@@ -18,10 +18,10 @@ public class AppTests {
     @Autowired
     RabbitSender rabbitSender;
 
-	@Test
-	public void contextLoads() throws JsonProcessingException {
-	    // 先启动消费者 consumer，否则交换机、队列、绑定都不存在
+    @Test
+    public void contextLoads() throws JsonProcessingException {
+        // 先启动消费者 consumer，否则交换机、队列、绑定都不存在
         rabbitSender.send();
-	}
+    }
 
 }

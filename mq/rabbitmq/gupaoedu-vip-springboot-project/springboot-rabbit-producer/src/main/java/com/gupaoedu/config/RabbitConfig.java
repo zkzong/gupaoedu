@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitConfig {
     /**
      * 所有的消息发送都会转换成JSON格式发到交换机
+     *
      * @param connectionFactory
      * @return
      */

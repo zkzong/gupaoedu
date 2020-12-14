@@ -38,14 +38,14 @@ public class MessageProducer {
         // amqpTemplate2 默认交换机 MY_TOPIC_EXCHANGE
 
         // Exchange 为 direct 模式，直接指定routingKey
-        amqpTemplate.convertAndSend("FirstKey", "[Direct,FirstKey] "+message);
-        amqpTemplate.convertAndSend("SecondKey", "[Direct,SecondKey] "+message);
+        amqpTemplate.convertAndSend("FirstKey", "[Direct,FirstKey] " + message);
+        amqpTemplate.convertAndSend("SecondKey", "[Direct,SecondKey] " + message);
 
         // Exchange模式为topic，通过topic匹配关心该主题的队列
-        amqpTemplate2.convertAndSend("msg.Third.send","[Topic,msg.Third.send] "+message);
+        amqpTemplate2.convertAndSend("msg.Third.send", "[Topic,msg.Third.send] " + message);
 
         // 广播消息，与Exchange绑定的所有队列都会收到消息，routingKey为空
-        amqpTemplate2.convertAndSend("MY_FANOUT_EXCHANGE",null,"[Fanout] "+message);
+        amqpTemplate2.convertAndSend("MY_FANOUT_EXCHANGE", null, "[Fanout] " + message);
     }
 }
 

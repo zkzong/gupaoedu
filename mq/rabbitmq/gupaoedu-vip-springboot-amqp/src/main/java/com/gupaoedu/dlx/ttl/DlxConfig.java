@@ -50,12 +50,13 @@ public class DlxConfig {
     }
 
     @Bean
-    public Binding binding(@Qualifier("oriUseQueue") Queue queue,@Qualifier("oriUseExchange") DirectExchange exchange) {
+    public Binding binding(@Qualifier("oriUseQueue") Queue queue, @Qualifier("oriUseExchange") DirectExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with("gupao.ori.use");
     }
 
     /**
      * 队列的死信交换机
+     *
      * @return
      */
     @Bean("deatLetterExchange")
@@ -69,7 +70,7 @@ public class DlxConfig {
     }
 
     @Bean
-    public Binding bindingDead(@Qualifier("deatLetterQueue") Queue queue,@Qualifier("deatLetterExchange") TopicExchange exchange) {
+    public Binding bindingDead(@Qualifier("deatLetterQueue") Queue queue, @Qualifier("deatLetterExchange") TopicExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with("#"); // 无条件路由
     }
 

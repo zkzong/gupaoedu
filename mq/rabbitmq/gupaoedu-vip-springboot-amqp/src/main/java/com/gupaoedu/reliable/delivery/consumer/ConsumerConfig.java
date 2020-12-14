@@ -11,6 +11,7 @@ import org.springframework.amqp.support.ConsumerTagStrategy;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ import java.util.Map;
 @Configuration
 public class ConsumerConfig {
     @Bean
-    public ConnectionFactory connectionFactory() throws Exception{
+    public ConnectionFactory connectionFactory() throws Exception {
         CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory();
         cachingConnectionFactory.setUri(ResourceUtil.getKey("rabbitmq.uri"));
         return cachingConnectionFactory;
@@ -42,7 +43,7 @@ public class ConsumerConfig {
     }
 
     @Bean
-    public Binding binding(@Qualifier("reliableQueue") Queue queue,@Qualifier("directExchange") DirectExchange exchange) {
+    public Binding binding(@Qualifier("reliableQueue") Queue queue, @Qualifier("directExchange") DirectExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with("gupao.tech");
     }
 

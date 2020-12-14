@@ -1,27 +1,21 @@
 package com.gupaoedu.amqp.container;
 
-import com.gupaoedu.util.ResourceUtil;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
 /**
  * @Author: qingshan
  * @Date: 2019/8/15 11:26
  * @Description: 咕泡学院，只为更好的你
  * 配置类的代码用不到，只用来演示
- *
  */
 public class ContainerSender {
     public static void main(String[] args) throws Exception {
@@ -36,7 +30,7 @@ public class ContainerSender {
         container.setMessageListener(new MessageListener() {
             @Override
             public void onMessage(Message message) {
-                System.out.println("收到消息："+message);
+                System.out.println("收到消息：" + message);
             }
         });
         container.start();

@@ -1,12 +1,16 @@
 package com.gupaoedu.dlx.delayplugin;
 
-import com.rabbitmq.client.*;
+import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.Consumer;
+import com.rabbitmq.client.DefaultConsumer;
+import com.rabbitmq.client.Envelope;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class DelayPluginConsumer {
     public static void main(String[] args) throws Exception {
@@ -23,8 +27,8 @@ public class DelayPluginConsumer {
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties,
                                        byte[] body) throws IOException {
                 String msg = new String(body, "UTF-8");
-                SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-                System.out.println("收到消息：[" + msg + "]\n接收时间：" +sf.format(new Date()));
+                SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                System.out.println("收到消息：[" + msg + "]\n接收时间：" + sf.format(new Date()));
             }
         };
 

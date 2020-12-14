@@ -12,7 +12,7 @@ import java.io.IOException;
 public class FirstConsumer {
 
     @RabbitHandler
-    public void process(String msg, Channel channel,long deliveryTag) throws IOException {
+    public void process(String msg, Channel channel, long deliveryTag) throws IOException {
         channel.basicAck(deliveryTag, true);
         System.out.println(" first queue received msg : " + msg);
     }

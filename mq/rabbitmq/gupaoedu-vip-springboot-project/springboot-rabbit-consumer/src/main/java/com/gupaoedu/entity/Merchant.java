@@ -48,6 +48,7 @@ public class Merchant implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
+
     public String getAccountNo() {
         return accountNo;
     }
@@ -73,13 +74,13 @@ public class Merchant implements Serializable {
     }
 
     public String getStateStr() {
-        if(null == state){
+        if (null == state) {
             return "";
-        }else if("1".equals(state.toString())){
+        } else if ("1".equals(state.toString())) {
             return "激活";
-        }else if ("0".equals(state.toString())){
+        } else if ("0".equals(state.toString())) {
             return "关闭";
-        }else{
+        } else {
             return "未知";
         }
     }
