@@ -14,8 +14,9 @@ public class CyclicBarrierTest {
         int count = 100;
         CyclicBarrier cyclicBarrier = new CyclicBarrier(count);
         ExecutorService executorService = Executors.newFixedThreadPool(count);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++) {
             executorService.execute(new CyclicBarrierTest().new Task(cyclicBarrier));
+        }
         executorService.shutdown();
         while (!executorService.isTerminated()) {
             try {
@@ -34,6 +35,7 @@ public class CyclicBarrierTest {
             this.cyclicBarrier = cyclicBarrier;
         }
 
+        @Override
         public void run() {
             try {
                 cyclicBarrier.await();
