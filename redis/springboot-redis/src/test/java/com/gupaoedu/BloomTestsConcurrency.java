@@ -65,7 +65,7 @@ public class BloomTestsConcurrency {
             bf.put(user.getAccount());
         }
         long end = System.currentTimeMillis();
-        System.out.println("查询并加载"+allUsers.size()+"条数据到布隆过滤器完毕，总耗时："+(end -start ) +"毫秒");
+        System.out.println("查询并加载" + allUsers.size() + "条数据到布隆过滤器完毕，总耗时：" + (end - start) + "毫秒");
     }
 
     @Test
@@ -74,7 +74,7 @@ public class BloomTestsConcurrency {
         allUsers = userService.getAllUser();
         CyclicBarrier cyclicBarrier = new CyclicBarrier(THREAD_NUM);
         ExecutorService executorService = Executors.newFixedThreadPool(THREAD_NUM);
-        for (int i = 0; i < THREAD_NUM; i++){
+        for (int i = 0; i < THREAD_NUM; i++) {
             executorService.execute(new BloomTestsConcurrency().new MyThread(cyclicBarrier, redisTemplate, userService));
         }
 
@@ -85,7 +85,7 @@ public class BloomTestsConcurrency {
         }
 
         long end = System.currentTimeMillis();
-        System.out.println("并发数："+THREAD_NUM + "，新建线程以及过滤总耗时："+(end -start ) +"毫秒，演示结束");
+        System.out.println("并发数：" + THREAD_NUM + "，新建线程以及过滤总耗时：" + (end - start) + "毫秒，演示结束");
     }
 
     public class MyThread implements Runnable {
@@ -133,7 +133,7 @@ public class BloomTestsConcurrency {
             Object cacheUser = operation.get(key);
             if (cacheUser != null) {
                 Date date2 = new Date();
-                System.out.println(sdf.format(date2)+" 命中redis缓存");
+                System.out.println(sdf.format(date2) + " 命中redis缓存");
                 return;
             }
 
@@ -148,7 +148,7 @@ public class BloomTestsConcurrency {
                 }
                 // 将mysql数据库查询到的数据写入到redis中
                 Date date3 = new Date();
-                System.out.println(sdf.format(date3)+" 从数据库查询并写入Reids");
+                System.out.println(sdf.format(date3) + " 从数据库查询并写入Reids");
                 operation.set("Key:" + user.get(0).getAccount(), user.get(0).getAccount());
             }
         }

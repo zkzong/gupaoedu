@@ -3,7 +3,6 @@ package sentinel;
 import redis.clients.jedis.JedisSentinelPool;
 
 import java.util.HashSet;
-import java.util.Properties;
 import java.util.Set;
 
 /**
@@ -27,7 +26,7 @@ public class JedisSentinelTest {
 
     public static void main(String[] args) {
         JedisSentinelPool pool = createJedisPool();
-        pool.getResource().set("qingshan", "qq"+System.currentTimeMillis());
+        pool.getResource().set("qingshan", "qq" + System.currentTimeMillis());
         System.out.println(pool.getResource().get("qingshan"));
     }
 }

@@ -14,10 +14,10 @@ public class RedisAppTests {
     @Autowired
     RedisUtil util;
 
-	@Test
-	public void contextLoads() {
-        util.set("boot", "2673--" +System.currentTimeMillis());
+    @Test
+    public void contextLoads() {
+        util.set("boot", "2673--" + System.currentTimeMillis());
         System.out.println(util.get("boot"));
-	}
+    }
 
 }

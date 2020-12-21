@@ -11,12 +11,11 @@ import java.util.*;
  * @Author: qingshan
  * @Date: 2018/11/2 17:32
  * @Description: 咕泡学院，只为更好的你
- *
+ * <p>
  * 测试布隆过滤器的正确判断和误判
- *
+ * <p>
  * 往布隆过滤器里面存放100万个元素
  * 测试100个存在的元素和9900个不存在的元素
- *
  */
 public class BloomFilterDemo {
     private static final int insertions = 1000000;
@@ -61,13 +60,13 @@ public class BloomFilterDemo {
             }
         }
 
-        NumberFormat percentFormat =NumberFormat.getPercentInstance();
+        NumberFormat percentFormat = NumberFormat.getPercentInstance();
         percentFormat.setMaximumFractionDigits(2); //最大小数位数
         float percent = (float) wrong / 9900;
         float bingo = (float) (9900 - wrong) / 9900;
 
-        System.out.println("在100W个元素中，判断100个实际存在的元素，布隆过滤器认为存在的："+right);
-        System.out.println("在100W个元素中，判断9900个实际不存在的元素，误认为存在的："+wrong+"" +
-                "，命中率：" + percentFormat.format(bingo) + "，误判率：" + percentFormat.format(percent) );
+        System.out.println("在100W个元素中，判断100个实际存在的元素，布隆过滤器认为存在的：" + right);
+        System.out.println("在100W个元素中，判断9900个实际不存在的元素，误认为存在的：" + wrong + "" +
+                "，命中率：" + percentFormat.format(bingo) + "，误判率：" + percentFormat.format(percent));
     }
 }
