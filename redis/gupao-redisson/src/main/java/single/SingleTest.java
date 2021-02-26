@@ -16,7 +16,8 @@ public class SingleTest {
         config.setCodec(new org.redisson.client.codec.StringCodec());
 
         //指定使用单节点部署方式
-        config.useSingleServer().setAddress("redis://127.0.0.1:6379");
+        config.useSingleServer().setAddress("redis://127.0.0.1:6379")
+                .setPassword("zong");
 
         RedissonClient redisson = Redisson.create(config);
 
